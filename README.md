@@ -1,9 +1,6 @@
 # DioHeinekeinOS
 Solução do desafio Dio-Heinekein ref. criação de projeto lógico para um sistema de gerenciamento de OS - ordens de serviço para uma oficina mecânica.
 
-# DioHeinekeinOS
-Solução do desafio Dio-Heinekein ref. ciração de projeto lógico para um sistema de gerenciamento de OS - ordens de serviço para uma oficina mecânica.
-
 # Escopo
 Aqui veremos a solução para o desafio Dio-Heinekein referente a criação do projeto lógico do banco de dados para um sistema de gerenciamento de OS - ordens de serviço para uma oficina mecânica, bem como carga de dados e desenvolvimento de todos os scripts sql para a criação do banco, de suas tabelas, população com dados e por fim, diversas queries de consulta, utilizando MySQL WorkBench, PyCharm e GitHub.
 
@@ -64,23 +61,48 @@ Para solução do desafio, foram necessárias as ações a seguir listadas:
      - scripts de consultas/queries (abaixo)
   9. Formulação de perguntas respondidas pelas queries.
       - abaixo e dentro dos scripts das queries de consultas (objetivo das tabelas).
-      - tabelas XLSX com comentários e com os resultados das queries.
 
 #
 
-## Queries de consultas 
-- QueryClientes.sql: consultas inclusas no script (ver comentários no interior do script)
-  - lista todos clientes
-  - lista clientes com OS abertas (em orçamento)
-  - lista clientes com OS encerradas (para processar a entrega e faturar os serviços prestados)
-  - L
-  
-- 
+## Queries de consultas (*) Queries documentadas internamente.
+- QryClientes.sql: lista todos clientes em ordem alfabética e usa algumas mascáras de formatação para CPFs (PF-pessoa física) e CNPJs (PJ-pessoa jurídica), por exemplo.
+- QryClientesPJ-SP.sql: lista todos clientes PJ de SP (São Paulo) em ordem alfabética e usa algumas mascáras de formatação para CPFs e CNPJs, por exemplo.
+- QryClientesSP: lista todos clientes de SP (São Paulo) em ordem alfabética e usa algumas mascáras de formatação para CPFs e CNPJs, por exemplo.
+- QryMecanicoDisponivel: lista mecanicos disponíveis, ou seja, não alocados (sem trabalho) a nenhuma OS (ordem de serviço) em um determinado período de tempo. Serve para auxiliar o usuário a localizar o mecânico automaticamente a partir do cadastro de habilidades (categorias de serviço) onde ele é proficiente e qualificado entre JUNIOR, PLENO E SENIOR.
+- QryMecanicoXhabilidades: listagem dos mecânicos com suas habilidades e níveis de proficiência relacionados.
+- QryMecanicoXhabilidades: listagem dos mecânicos com suas habilidades e níveis de proficiência relacionados, filtrando habilidade "Lanternagem" (chapeação e pintura).
+- QryOsConcluida: lista as OS com status de concluidas.
+- QryOsEmAndamento: lista as OS com status como com serviços em andamento.
+- QryOsParaOrçamento: lista as OS com status de recebidas para orçamento.
+- QryOsTotais: lista apenas os totais de OS.
+- QryOsUmMecanico: lista as OS de um mecanico em um determinado intevalo de datas.
+- QryPecasPrevistoXrealPorOS: lista as peças previstas X utilizadas por OS.
+- QryPrevisaoCustosOS: listas as OS com os custos de peças e serviços previstos.
+- QryPrevisaoCustosOsHAVING: listas as OS com os custos de peças e serviços previstos (apenas para uso de HAVING).
+- QryServiçosPorOS: lista os serviços por OS.
+- QryTabelaPrecosPecas: tabela de preços das peças para utilização nas OS.
+- QryTabelaPrecosServicos: tabela de preços dos serviços das OS.
+- QryVeiculosPorCliente: lista os veículos por cliente.
+- QryVeiculosPorClienteI30-2015: lista os veículos por cliente - seleção modelo i30 2015.
 
-## Banco de dados criado: dio_osdb
+## Scrips de upload (*) Scripts documentados internamente.
+- UploadCliente.sql - script que cria e popula a tabela de clientes (CLIENTE), usando CPF uo CNPJ como código de contribuinte, com dígitos validados e CEPs (códigos de endereçamento postal brasileiro) validado.
+- UploadVeiculosPorCliente.sql - script que cria e popula a tabela com o relacionamento de veículos por cliente (VEICULOSPORCLIENTE).
+- UploadVeiculo.sql - script que cria e popula a tabela de veículos (VEICULO).
+- UploadPeca.sql - script que cria e popula a tabela de peças sem fotos (PECA).
+- UploadPecasPorOs.sql - script que cria e popula a tabela que faz o relacionamento das peças utilizadas (ou a ser utilizadas-orçamentos) por OS - ordem de serviço (PECASPOROS).
+- UploadServico.sql - script que cria e popula a tabela de serviços da oficina mecânica por marca, modelo e ano do veículo. Ela é tambémm a tabela de preços dos serviços (SERVICO).
+- UploadServicosPorOs.sql - script que cria e popula a tabela que relaciona os serviços (realizados e/ou orçados) por OS (SERVICOSPOROS).
+- UploadMecanico.sql - script que cria e popula a tabela de mecânicos (10 registros) da oficina. (*) Atenção para ativos e inativos (MECANICO).
+- UploadCategoria.sql - script que cria e popula a tabela com os agrupamentos dos serviços oferecidos pela oficina mecânica e que serão também as habilidades (áreas de proficiência) dos mecânicos: Lanternagem, Elétrica, Hidráulica, Mecânica, Suspensão e Geral (CATEGORIA).
+- UploadCategoriasPorMecanico.sql - script que cria e popula a tabela que faz o relacionamento entre a tabela de mecânicoscom os agrupamentos dos serviços oferecidos pela oficina mecânica e que serão também as habilidades (áreas de proficiência) dos mecânicos: Lanternagem, Elétrica, Hidráulica, Mecânica, Suspensão e Geral (CATEGORIASPORMECANICO).
+- UploadOsPorMecanico.sql - script que cria e popula a tabela que faz o relacionamento das OS - ordens de serviço por mecânico (OSPORMECANICO). (*) Atenção para as habilidades (categorias).
+- UploadOs.sql - script que cria e popula a tabela de OS - Ordens de Serviço (OS). (*) Atenção para o campo status.
+
+## Scrips de update (*) Scripts documentados internamente.
+- UpdateAlocaOsParaMecanico: altera o (s) maecânico (s) responsáveis pela execução das OS consoante as habilidades (competências).
 
 ## Tabelas do banco de dados 'dio_osdb' e seus conteúdos:
-
 - CLIENTE: cadastro de clientes
 - VEICULOSPORCLIENTE: cadastro com os veículos por cliente
 - VEICULO: cadastro de veículos
@@ -96,29 +118,15 @@ Para solução do desafio, foram necessárias as ações a seguir listadas:
 - OS: cadastro de ordens de serviço orçadas, em execução, executadas ou canceladas.
 - (*) Atenção: o controle sobre a exclusão de OS - ordens de serviço, tem de ser sobre o campo STATUS (ver bem ao final do README.md), através de Regras de Negócio. 
 
-## Arquivos (e conteúdos) carregados neste repositório:
-  - (*) Todos scripts estão documentados internamente.
-  - (*) Atenção! Foi feita a carga de poucos registros, apenas em número suficiente para desenvolvimento da queries de consulta e os dados eventualmente podem não estar 100% consistentes (se der tempo a consistência será ajustada).
-
+## Outros arquivos (e conteúdos) carregados neste repositório:
 - README.md - roteiro para entendimento do repositório com a narrativa original e a solução para o desafio proposto.
 - DioHeinekeinOS.mwb - diagrama entidade relacionamento (MySQL Workbench) com o diagrama, banco e tabelas.
-- CriaBancoTabelas v1000.sql - script que apaga (ATENÇÃO) e cria novamente o banco de dados 'dio_osdb' e suas tabelas. 
-- UploadCliente.sql - script que cria e popula (10 registros) a tabela de clientes, usando CPF (cadastro pessoa física) como código de contribuinte, com dígitos validados e CEPs (códigos de endereçamento postal brasileiro) validado.
-- UploadVeiculosPorCliente.sql - script que cria e popula a tabela com o relacionamento de veículos por cliente.
-- UploadVeiculo.sql - script que cria e popula a tabela de veículos.
-- UploadPeca.sql - script que cria e popula a tabela de peças (sem fotos).
-- UploadPecasPorOs.sql - script que cria e popula a tabela que faz o relacionamento das peças utilizadas (ou a ser utilizadas-orçamentos) por OS - ordem de serviço.
-- UploadServico.sql - script que cria e popula a tabela de serviços da oficina mecânica por marca, modelo e ano do veículo. Ela é tambémm a tabela de preços dos serviços.
-- UploadServicosPorOs.sql - script que cria e popula a tabela que relaciona os serviços (realizados e/ou orçados) por OS.
-- UploadMecanico.sql - script que cria e popula a tabela de mecânicos (10 registros) da oficina. (*) Atenção para ativos e inativos.
-- UploadCategoria.sql - script que cria e popula a tabela com os agrupamentos dos serviços oferecidos pela oficina mecânica e que serão também as habilidades (áreas de proficiência) dos mecânicos: Lanternagem, Elétrica, Hidráulica, Mecânica, Suspensão e Geral.
-- UploadCategoriasPorMecanico.sql - script que cria e popula a tabela que faz o relacionamento entre a tabela de mecânicoscom os agrupamentos dos serviços oferecidos pela oficina mecânica e que serão também as habilidades (áreas de proficiência) dos mecânicos: Lanternagem, Elétrica, Hidráulica, Mecânica, Suspensão e Geral.
-- UploadOsPorMecanico.sql - script que cria e popula a tabela que faz o relacionamento das OS - ordens de serviço por mecânico. (*) Atenção para as habilidades (categorias).
-- UploadOs.sql - script qye cria e popula a tabela de OS - Ordens de Serviço. (*) Atenção para o campo status.
+- DioHeinekeinOS.png - diagrama entidade relacionamento (PNG) com o diagrama, banco e tabelas.
+- DadosDasTabelas.XLSX - arquivo excel com separadores com os dados das tabelas do dio_osdb exportados para o formato CSV/XLSX.
   
 ## Mais detalhes (apenas para melhor entendimento do desenvolvimento do projeto)
 
-## Narrativa original
+## Detalhamento da narrativa original
 
 - Sistema de controle e gerenciamento de execução de ordens de serviço em uma oficina mecânica.
 - Clientes levam seus veículos (um cliente pode levar mais de um veículo) à oficina mecânica para serem consertados ou para passarem por revisões periódicas (tipos: conserto e revisão).
@@ -181,7 +189,7 @@ Para solução do desafio, foram necessárias as ações a seguir listadas:
   - VEICULO: trazer os dados dos veículos para as Ordens de Serviços.
   - OSPORMECANICO: disponibilizar dados dos mecânicos para programação e alocação dos serviços consoante as suas habilidades.
 - Na abertura das ordens de serviços, o responsável irá ouvir o cliente e listar as suas necessidades enquanto inspeciona o veículo, ele abre a OS e víncula ali as peças e serviços que julgar necessários, bem como faz a ligação ao mecânico que irá executar os serviços, determinando também datas previstas de início e fim para cada serviço a ser executado.
-- As ordens de serviço poderão ter os seguintes status iniciais por REGRA DO NEGÓCIO:
+- As ordens de serviço poderão ter os seguintes status iniciais por REGRA DO NEGÓCIO (apenas exemplificando):
   - Aguardando aprovação de cliente
   - Aprovada para execução
   - Aguardando peças
