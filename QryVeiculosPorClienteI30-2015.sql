@@ -8,6 +8,9 @@
 -- lista os veídulos por cliente em ordem de cliente + placa com a narrativa deles sobre os problemas do veículo
 -- selecionando apenas modelo i30 do ano 2015
 
+
+-- acessa o banco de dados dio_osdb
+use dio_osdb;
 SELECT 
   c.ClienteNome AS "Nome do Cliente",
   -- Máscara para CPF (XXX.XXX.XXX-XX) e CNPJ (XX.XXX.XXX/XXXX-XX)
