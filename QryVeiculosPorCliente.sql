@@ -7,6 +7,9 @@
 -- Função da query: 
 -- lista os veículos por cliente em ordem de cliente + placa com a narratiuva deles sobre os problemas do veículo
 
+
+-- acessa o banco de dados dio_osdb
+use dio_osdb;
 SELECT 
   c.ClienteNome AS "Nome do Cliente",
   -- Máscara para CPF (XXX.XXX.XXX-XX) e CNPJ (XX.XXX.XXX/XXXX-XX)
