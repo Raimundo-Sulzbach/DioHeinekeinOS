@@ -7,6 +7,10 @@
 -- Função da query: 
 -- Seleciona todas as ordens de serviço EM ANDAMENTO - mecanico trabalhando na OS, por ordem de data de início
 -- 
+
+
+-- acessa o banco de dados dio_osdb
+use dio_osdb;
 SELECT 
   os.idos AS "OS",
   cliente.clientenome AS "CLIENTE",
