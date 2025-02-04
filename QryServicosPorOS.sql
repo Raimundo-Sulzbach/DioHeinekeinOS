@@ -7,6 +7,9 @@
 -- Função da query: 
 -- lista os serviços por OS
 
+
+-- acessa o banco de dados dio_osdb
+use dio_osdb;
 SELECT 
   os.idOS AS "ID OS",
   os.OSEmissao AS "EMISSÃO OS",
