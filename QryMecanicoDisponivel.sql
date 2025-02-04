@@ -13,6 +13,9 @@
 -- 3) Selecionar mecânicos (não demitidos ou afastados) com especialidade em lanternagem para a OS número 5
 -- 
 
+
+-- acessa o banco de dados dio_osdb
+use dio_osdb;
 -- Seleciona mecanicos sem trabalho entre 01 a 31/01/2025 e que tenham habilidades em Mecânica e/ou Lanternagem
 SELECT 
   mecanico.mecaniconome AS "PROFISSIONAL",
