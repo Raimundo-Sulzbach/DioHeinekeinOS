@@ -9,6 +9,9 @@
 -- Seleciona todas as ordens de serviço ABERTAS - pendente de início de trabalho, por ordem de data de início e
 -- calcula seus custos
 
+
+-- acessa o banco de dados dio_osdb
+use dio_osdb;
 SELECT 
   os.idos AS "OS",
   cliente.clientenome AS "CLIENTE",
