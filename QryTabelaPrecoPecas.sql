@@ -7,6 +7,8 @@
 -- Função da query: 
 -- lista a tabela com os preços das peças para utilização nas ordens de serviço, ordenado por descrição
 
+-- acessa o banco de dados dio_osdb
+use dio_osdb;
 SELECT 
   PecaDescricao AS "DESCRIÇÃO", PecaCodigo AS "CÓDIGO",
   -- Formatação do preço para 999.999,99
