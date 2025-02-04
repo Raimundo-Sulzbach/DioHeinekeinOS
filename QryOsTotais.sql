@@ -7,6 +7,9 @@
 -- Função da query: 
 -- lista o total de ordens de serviço abertas só totais
 
+
+-- acessa o banco de dados dio_osdb
+use dio_osdb;
 SELECT
   COUNT(os.idos) AS "QTT OS",
   SUM(servicosporos.servicosporosqtt) AS "QTT SERVIÇOS",
