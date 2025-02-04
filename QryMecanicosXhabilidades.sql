@@ -35,6 +35,8 @@ SELECT
   m.MecanicoWhatsapp AS "WHATSAPP",
   m.MecanicoEmail AS "EMAIL"
 FROM Mecanico m
+-- filtra apenas mecânicos ativos
+where mecanico.mecanicostatus = 1 
 JOIN CategoriasPorMecanico cp ON m.idMecanico = cp.Mecanico_idMecanico
 JOIN Categoria c ON cp.Categoria_idCategoria = c.idCategoria
 ORDER BY c.Categoria, m.MecanicoNome;
