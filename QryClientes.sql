@@ -7,6 +7,9 @@
 -- Função da query: 
 -- lista todo o cadastro de clientes em ordem alfabética
 
+
+-- acessa o banco de dados dio_osdb
+use dio_osdb;
 SELECT 
   ClienteNome AS "NOME",
   -- Máscara para CPF (XXX.XXX.XXX-XX) e CNPJ (XX.XXX.XXX/XXXX-XX)
@@ -46,4 +49,5 @@ SELECT
   ClienteWhatsapp AS "WHATSAPP",
   ClienteEmail AS "EMAIL"
 FROM cliente
+-- ordena a saída
 ORDER BY ClienteNome;
