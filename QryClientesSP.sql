@@ -7,6 +7,9 @@
 -- Função da query: 
 -- lista o cadastro de clientes em ordem alfabética selecionando clientes da cidade de São Paulo
 
+
+-- acessa o banco de dados dio_osdb
+use dio_osdb;
 SELECT 
   ClienteNome AS "NOME",
   -- Máscara para CPF (XXX.XXX.XXX-XX) e CNPJ (XX.XXX.XXX/XXXX-XX)
