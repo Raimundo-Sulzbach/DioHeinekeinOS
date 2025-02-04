@@ -59,31 +59,73 @@ Para solução do desafio, foram necessárias as ações a seguir listadas:
      - script para criação do banco e tabelas (abaixo)
      - scripts para popular as tabelas (abaixo)
      - scripts de consultas/queries (abaixo)
+     - scripts diversos para update de dados e lista banco e suas tabelas (abaixo)
   9. Formulação de perguntas respondidas pelas queries.
       - abaixo e dentro dos scripts das queries de consultas (objetivo das tabelas).
 
 #
 
 ## Queries de consultas (*) Queries documentadas internamente.
-- QryClientes.sql: lista todos clientes em ordem alfabética e usa algumas mascáras de formatação para CPFs (PF-pessoa física) e CNPJs (PJ-pessoa jurídica), por exemplo.
-- QryClientesPJ-SP.sql: lista todos clientes PJ de SP (São Paulo) em ordem alfabética e usa algumas mascáras de formatação para CPFs e CNPJs, por exemplo.
-- QryClientesSP: lista todos clientes de SP (São Paulo) em ordem alfabética e usa algumas mascáras de formatação para CPFs e CNPJs, por exemplo.
-- QryMecanicoDisponivel: lista mecanicos disponíveis, ou seja, não alocados (sem trabalho) a nenhuma OS (ordem de serviço) em um determinado período de tempo. Serve para auxiliar o usuário a localizar o mecânico automaticamente a partir do cadastro de habilidades (categorias de serviço) onde ele é proficiente e qualificado entre JUNIOR, PLENO E SENIOR.
-- QryMecanicoXhabilidades: listagem dos mecânicos com suas habilidades e níveis de proficiência relacionados.
-- QryMecanicoXhabilidades: listagem dos mecânicos com suas habilidades e níveis de proficiência relacionados, filtrando habilidade "Lanternagem" (chapeação e pintura).
-- QryOsConcluida: lista as OS com status de concluidas.
-- QryOsEmAndamento: lista as OS com status como com serviços em andamento.
-- QryOsParaOrçamento: lista as OS com status de recebidas para orçamento.
-- QryOsTotais: lista apenas os totais de OS.
-- QryOsUmMecanico: lista as OS de um mecanico em um determinado intevalo de datas.
-- QryPecasPrevistoXrealPorOS: lista as peças previstas X utilizadas por OS.
-- QryPrevisaoCustosOS: listas as OS com os custos de peças e serviços previstos.
-- QryPrevisaoCustosOsHAVING: listas as OS com os custos de peças e serviços previstos (apenas para uso de HAVING).
-- QryServiçosPorOS: lista os serviços por OS.
-- QryTabelaPrecosPecas: tabela de preços das peças para utilização nas OS.
-- QryTabelaPrecosServicos: tabela de preços dos serviços das OS.
-- QryVeiculosPorCliente: lista os veículos por cliente.
-- QryVeiculosPorClienteI30-2015: lista os veículos por cliente - seleção modelo i30 2015.
+- QryMecanicoDisponivel:
+  - Pergunta: recebemos 2 veículos para conserto, os quais tiverem os orçamentos aprovados. Os clientes tem pressa (como sempre), então, quais são mecânicos estão disponíveis em janeiro/2025 e que tenham competências para atender os veículos que chegaram na oficina?
+  - Função: lista mecanicos disponíveis, ou seja, não alocados (sem trabalho) a nenhuma OS (ordem de serviço) em um determinado período de tempo. Serve para auxiliar o usuário a localizar o mecânico automaticamente a partir do cadastro de habilidades (categorias de serviço) onde ele é proficiente e qualificado entre JUNIOR, PLENO E SENIOR.
+- QryMecanicoXhabilidades: 
+  - Pergunta: o movimento está aumentando e os serviços são variados (categoria ou habilidade ou competência ou proficiência). O gestor resolveu fazer um programa qualificação em multi-funções e treinar toda a equipe em diversos tipos de competência então, quais são as competências do time de mecânicos ativos?
+  - Função: listagem dos mecânicos com suas habilidades e níveis de proficiência relacionados.
+- QryMecanicoXhabilidades-Lanternagem: 
+  - Pergunta: estamos recebendo muitos serviços de Lanternagem (categoria ou habilidade ou competência ou proficiência), então, quais mecânicos tem essa competência?
+  - Função: listagem dos mecânicos com suas habilidades e níveis de proficiência relacionados, filtrando habilidade "Lanternagem" (chapeação e pintura).
+- QryMecanicoXhabilidadesAtivosInativos: 
+  - Pergunta: o movimenta da oficina só aumenta e o proprietártio pensa em trazer de volta para o quadro de funcionários alguns mecânicos que ele teve de demitir quando teve uma crise no negócio há alguns anos. Quais são os mecânicos que já trabalharam na oficina e foram demitidos ou pediram para sair?
+  - Função: listagem dos mecânicos com suas habilidades e níveis de proficiência relacionados, filtrando habilidade "Lanternagem" (chapeação e pintura).
+- QryOsConcluida: 
+  - Pergunta: está chegando o final de mês e o proprietário precisa faturar para receber e pagar as contas. Quais são as OS que estão concluídas e podem ser faturadas (e recebidas)?
+  - Função: lista as OS com status de concluidas.
+- QryOsEmAndamento: 
+  - Pergunta: a oficina está cheia e o chefe da mecânica quer saber quais são as OS que estão no pavilhão, em conserto ou em execução?
+  - Função: lista as OS com status como com serviços em andamento.
+- QryOsParaOrçamento: 
+  - Pergunta: existem vários carros parados na recepção, então, por lógica, temos várias OS para concluir orçamento. Quais são as OS que estão prontas para orçamento?
+  - Função: lista as OS com status de recebidas para orçamento.
+- QryOsTotais: 
+  - Pergunta: o gestor do negócio quer uma previsão de faturamento, apenas com os valores.
+  - Função: lista apenas os totais de OS.
+- QryOsUmMecanico: 
+  - Pergunta: um dos mecânicos está doente e terá de ter as suas atividades executadas por outro profissional. OU, um dos mecânicos pediu para antecipar as férias. Quais são as OS que este mecânico (doente ou férias) está trabalhando e que terão de ser passadas para um de seus colegas?
+  - Função: lista as OS de um mecanico em um determinado intevalo de datas.
+- QryPecasPrevistoXrealPorOS: 
+  - Pergunta: o cliente acho o orçamento caro. A atendente explicou que se tratavam do custo das peças, pois a mão de obra era sempre muito "em conta". O CLiente pediu para ver quais eram as peças?
+  - Função: lista as peças previstas X utilizadas por OS.
+- QryPrevisaoCustosOS: 
+  - Pergunta: todos clientes pedem para ver o orçamento. Quais são os custos de uma OS?
+  - Função: lista as OS com os custos de peças e serviços previstos.
+- QryPrevisaoCustosOsHAVING: 
+  - Pergunta: todos clientes pedem para ver o orçamento. Quais são os custos de uma OS?
+  - Função: lista as OS com os custos de peças e serviços previstos (apenas para uso de HAVING).
+- QryServiçosPorOS: 
+  - Pergunta: todos clientes tem uma reclamação (narrativa dele quanto ao seu veículo). Qual é na realidade, os serviços que terão de ser executados?
+  - Função: lista os serviços por OS.
+- QryTabelaPrecosPecas: 
+  - Pergunta: para agilizar os serviços e manter o negócio andando quando não houver energia ou internet, o gestor quer ter uma tabela de preços de peças (gigante... Não! Salva em PDF e coloca no celular de cada um!)  na mão de cada atendente que recebe os veículos para orçamento. COmo atendê-lo?
+  - Função: tabela de preços das peças para utilização nas OS.
+- QryTabelaPrecosServicos: 
+  - Pergunta: para agilizar os serviços e manter o negócio andando quando não houver energia ou internet, o gestor quer ter uma tabela de preços de serviços (gigante... Não! Salva em PDF e coloca no celular de cada um!)  na mão de cada atendente que recebe os veículos para orçamento. COmo atendê-lo?
+  - Função: tabela de preços dos serviços das OS.
+- QryClientes.sql: 
+  - Pergunta: o movimento da oficina caiu. O gestor observou que isso acontecia nas terças e quartas-feiras e pediu para a área de marketing fazer algo a respeito. Para iniciar, o gestor de marketing pediu o cadastro com os clientes para iniciar as suas análises e assim propor alguma coisa para chamar (ou trazer) clientes para a oficina.
+  - Função: lista todos clientes em ordem alfabética e usa algumas mascáras de formatação para CPFs (PF-pessoa física) e CNPJs (PJ-pessoa jurídica), por exemplo.
+- QryClientesPJ-SP.sql: 
+  - Pergunta: o gestor observou que a maioria dos clientes são de SP, então pediu novo relatório, agora apenas com os clientes de SP.
+  - Função: lista todos clientes PJ de SP (São Paulo) em ordem alfabética e usa algumas mascáras de formatação para CPFs e CNPJs, por exemplo.
+- QryClientesSP: 
+  - Pergunta: o gestor observou que a maioria dos clientes são de SP, então pediu novo relatório, agora apenas com os clientes de SP.
+  - Função: lista todos clientes de SP (São Paulo) em ordem alfabética e usa algumas mascáras de formatação para CPFs e CNPJs, por exemplo.
+- QryVeiculosPorCliente: 
+  - Pergunta: o marketing - muito rápido, já pensou em alternativas e pediu agora uma lista com os veículos por cliente.
+  - Função: lista os veículos por cliente.
+- QryVeiculosPorClienteI30-2015: 
+  - Pergunta: um cliente chegou a loja com reclamações dos serviços prestados. COmo ver qual o seu veículo?
+  - Função: lista os veículos por cliente - seleção modelo i30 2015.
 
 ## Scrips de upload (*) Scripts documentados internamente.
 - UploadCliente.sql - script que cria e popula a tabela de clientes (CLIENTE), usando CPF uo CNPJ como código de contribuinte, com dígitos validados e CEPs (códigos de endereçamento postal brasileiro) validado.
@@ -99,8 +141,9 @@ Para solução do desafio, foram necessárias as ações a seguir listadas:
 - UploadOsPorMecanico.sql - script que cria e popula a tabela que faz o relacionamento das OS - ordens de serviço por mecânico (OSPORMECANICO). (*) Atenção para as habilidades (categorias).
 - UploadOs.sql - script que cria e popula a tabela de OS - Ordens de Serviço (OS). (*) Atenção para o campo status.
 
-## Scrips de update (*) Scripts documentados internamente.
+## Scrips de update e diversos (*) Scripts documentados internamente.
 - UpdateAlocaOsParaMecanico: altera o (s) maecânico (s) responsáveis pela execução das OS consoante as habilidades (competências).
+- LIstaBancoTabelas: apenas lista os bancos existentes e as tabelas do banco dio_osdb.
 
 ## Tabelas do banco de dados 'dio_osdb' e seus conteúdos:
 - CLIENTE: cadastro de clientes
