@@ -8,6 +8,10 @@
 -- O cliente foi recebido e ouvido, agora ele vai para o mecânico fazer o orçamento.
 -- seleciona todas ordens de serviço do banco com os.osstatus = "Aberta" e emissão (recepção cliente) de 01 até 31/01/2025
 -- 
+
+
+-- acessa o banco de dados dio_osdb
+use dio_osdb;
 SELECT 
   os.idos AS "OS",
   os.osEmissao As "Abrtura OS",
