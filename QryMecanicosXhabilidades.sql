@@ -7,6 +7,8 @@
 -- Função da query: 
 -- lista o cadastro de mecânicos com as habilidades e nível de proficiência dele.
 
+-- acessa o banco de dados dio_osdb
+use dio_osdb;
 SELECT 
   c.Categoria AS "HABILIDADE",
   cp.categoriaspormecaniconivel AS "NÍVEL",
