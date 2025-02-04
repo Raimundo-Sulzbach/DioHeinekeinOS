@@ -16,6 +16,9 @@
 -- OS 5 = Rafael Oliveira (id = 7)
 -- 
 
+
+-- acessa o banco de dados dio_osdb
+use dio_osdb;
 -- Seleciona mecanicos sem trabalho entre 01 a 31/01/2025 e que tenham habilidades em Mecânica e/ou Lanternagem
 -- OS 1 altera de 1 (Mecanico Roberto Lima) para 10 Patricia Rocha (id = 10)
 -- Anteriormente essa OS estava com o mecânico 1 (Roberto Lima)
