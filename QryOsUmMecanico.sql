@@ -7,6 +7,10 @@
 -- Função da query: 
 -- seleciona ordens de serviço para execução em 02/2025 pela mecânica Juliana
 -- 
+
+
+-- acessa o banco de dados dio_osdb
+use dio_osdb;
 SELECT 
   os.idos AS "OS",
   cliente.clientenome AS "CLIENTE",
