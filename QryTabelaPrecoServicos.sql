@@ -8,14 +8,17 @@
 -- tabela de preços dos serviços
 -- ordenado por categoria + marca + modelo + ano + serviço
 
+-- acessa o banco de dados dio_osdb
+use dio_osdb;
 SELECT 
-  c.Categoria AS "CATEGORIA",
   s.ServicoMarcaVeiculo AS "MARCA",
   s.ServicoModeloVeiculo AS "MODELO",
   s.ServicoAnoVeiculo AS "ANO",
+  c.Categoria AS "CATEGORIA",
   s.ServicoDescricao AS "DESCRIÇÃO DO SERVIÇO",
   -- Formatação do preço do serviço para 999.999,99
   LPAD(FORMAT(s.ServicoPreco, 2, 'de_DE'), 12, ' ') AS "PREÇO UNITÁRIO"
 FROM Servico s
 JOIN Categoria c ON s.Categoria_idCategoria = c.idCategoria
-ORDER BY c.categoria,s.ServicoMarcaVeiculo,s.ServicoModeloVeiculo,s.ServicoAnoVeiculo,s.ServicoDescricao;
+-- ordena a saída
+ORDER BY s.ServicoMarcaVeiculo,s.ServicoModeloVeiculo,s.ServicoAnoVeiculo,c.categoria,s.ServicoDescricao;
