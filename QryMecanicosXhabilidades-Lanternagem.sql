@@ -8,6 +8,9 @@
 -- lista o cadastro de mecânicos com as habilidades e nível de proficiência dele.
 -- Seleciona apenas LANTERNAGEM 
 
+
+-- acessa o banco de dados dio_osdb
+use dio_osdb;
 SELECT 
   m.MecanicoNome AS "MECANICO NOME",
   -- Máscara para CPF (XXX.XXX.XXX-XX)
