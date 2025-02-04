@@ -30,5 +30,6 @@ WHERE mecanico.idmecanico NOT IN (
   JOIN servicosporos ON servicosporos.OS_idOS = ospormecanico.OS_idOS
   WHERE servicosporos.ServicosPorOSprevisaoInicio BETWEEN '2025-01-01' AND '2025-01-31'
 )
+-- seleciona os mecanicos ativos que tenham competência em Lanternagem ou Mecânica
 AND categoria.categoria = "Lanternagem" or categoria.categoria = "Mecânica" and mecanico.mecanicostatus = 1
 ORDER BY mecanico.idmecanico;
